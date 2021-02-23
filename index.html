@@ -4,17 +4,249 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOUND CLOUD MUSIC</title>
-
-    <script src="//connect.soundcloud.com/sdk.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      <style type="text/css">
+        /* .myDiv {
+          border: 5px outset rgba(255, 238, 0, 0.671);
+          background-color: rgba(230, 226, 173, 0.671);    
+          text-align: center;
+        } */
+        .gray-container {
+          background: gray;
+        }
+        .footer{
+          background: #343a40;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          
+        }
+        .albumCard {
+          height: 20rem;
+          width: 20rem;
+        }
+        .col-white {
+          color: white;
+        }
+        .cardcount {
+          color: white;
+        }
+        .card {
+          border-radius: 25px;
+          box-shadow: 2px 4px #757575;
+        }
+        </style>
   
 </head>
-<body>
-    <button id="START">Start</button>
-    <button id="END">End</button>
+<body class="gray-container">
+    <header class="myDiv">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MUSIC GALLERY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Genres
+              </a>
+              <div class="dropdown-menu" id="renderGenres" aria-labelledby="navbarDropdown">
+                <!-- Menus rendered here -->
+              </div>
+            </li>
+
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="seachInput">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="searchBar" onclick="searchNow()">Search</button>
+          </div>
+        </div>
+      </nav>
     
-      <script src="js0331.js"></script>
-    <script src="jso331min.js"></script>
-      <script src="main.js"></script>
+    </header>
   
+    <div class="container-fluid py-5 ">
+        <h4 class="cardcount pt-5 pb-4 text-center" id="renderCount"></h4>
+      <div class="row justify-content-center align-items-center" id="renderCards">
+        <!-- cards rendered here -->
+   
+      </div>
+    </div>   
+    <footer class="container-fluid footer py-2">
+        <div class="row justify-content-center align-items-center text-center">
+          <div class="col">
+            <h4 class="col-white">©Copyright @ EAZER ABI 2020</h4>
+          </div>
+          
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="//connect.soundcloud.com/sdk.js"></script>
+    <script src="js0331.js"></script>
+    <script src="jso331min.js"></script>
+    <script src="main.js"></script>
+    <script type="text/javascript">
+      const data = [
+        {
+          type: 'rap',
+          embedLink: '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/898382710&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/taybaby74" title="TAYBABYNOLABEL" target="_blank" style="color: #cccccc; text-decoration: none;">TAYBABYNOLABEL</a> · <a href="https://soundcloud.com/taybaby74/smitty-blind-spot-official-audio" title="SMITTY - BLIND SPOT (OFFICIAL AUDIO)" target="_blank" style="color: #cccccc; text-decoration: none;">SMITTY - BLIND SPOT (OFFICIAL AUDIO)</a></div>'
+        },
+        {
+         type: 'rap',
+         embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/633243957&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/digitalstreams" title="Westcoast Radio (EDM)" target="_blank" style="color: #cccccc; text-decoration: none;">Westcoast Radio (EDM)</a> · <a href="https://soundcloud.com/digitalstreams/sets/tropicalhouse" title="Best Tropical House (2021)" target="_blank" style="color: #cccccc; text-decoration: none;">Best Tropical House (2021)</a></div>'
+        },
+        {
+         type: 'hiphop',
+         embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/319656316&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/ilyanaazman" title="ilyana azman" target="_blank" style="color: #cccccc; text-decoration: none;">ilyana azman</a> · <a href="https://soundcloud.com/ilyanaazman/sets/best-of-mrrevillz" title="Best Of MrRevillz" target="_blank" style="color: #cccccc; text-decoration: none;">Best Of MrRevillz</a></div>'
+        },
+        {
+         type: 'hiphop',
+         embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/189453650&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/digitalstreams" title="Westcoast Radio (EDM)" target="_blank" style="color: #cccccc; text-decoration: none;">Westcoast Radio (EDM)</a> · <a href="https://soundcloud.com/digitalstreams/sets/newmusic" title="Best of Tech House (2021)" target="_blank" style="color: #cccccc; text-decoration: none;">Best of Tech House (2021)</a></div>'
+        },
+        {
+          type:'love',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/511498698&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kaashmychecks" title="Kaash Paige" target="_blank" style="color: #cccccc; text-decoration: none;">Kaash Paige</a> · <a href="https://soundcloud.com/kaashmychecks/love-songs-3-prod-dream-koala" title="LOVE SONGS &lt;3 (Prod. Dream Koala)" target="_blank" style="color: #cccccc; text-decoration: none;">LOVE SONGS &lt;3 (Prod. Dream Koala)</a></div>'
+        },
+        {
+          type:'love',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/973415425&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/syntaxcreative" title="Syntax Creative" target="_blank" style="color: #cccccc; text-decoration: none;">Syntax Creative</a> · <a href="https://soundcloud.com/syntaxcreative/lonesome-river-band-love-songs" title="Lonesome River Band - &quot;Love Songs&quot;" target="_blank" style="color: #cccccc; text-decoration: none;">Lonesome River Band - &quot;Love Songs&quot;</a></div>'
+        },
+        {
+          type:'love',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/197580978&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/andiecase" title="Andie Case" target="_blank" style="color: #cccccc; text-decoration: none;">Andie Case</a> · <a href="https://soundcloud.com/andiecase/ellie-goulding-love-me-like-you-do-andie-case-cover" title="Ellie Goulding - Love Me Like You Do" target="_blank" style="color: #cccccc; text-decoration: none;">Ellie Goulding - Love Me Like You Do</a></div>'
+        },
+        {
+          type:'love',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/193659154&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/selinairwan" title="selinairwan" target="_blank" style="color: #cccccc; text-decoration: none;">selinairwan</a> · <a href="https://soundcloud.com/selinairwan/love-me-like-you-do" title="Love Me Like You Do" target="_blank" style="color: #cccccc; text-decoration: none;">Love Me Like You Do</a></div>'
+        },
+        {
+          type:'sad',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/247087399&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/1641170151" title="h" target="_blank" style="color: #cccccc; text-decoration: none;">h</a> · <a href="https://soundcloud.com/1641170151/hatsune-mikufailure-girl-kairiki-bear" title="【Hatsune Miku】Failure Girl - Kairiki Bear" target="_blank" style="color: #cccccc; text-decoration: none;">【Hatsune Miku】Failure Girl - Kairiki Bear</a></div>'
+        },
+        {
+          type:'sad',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/233964311&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/williamedwards98" title="WilliamEdwards_" target="_blank" style="color: #cccccc; text-decoration: none;">WilliamEdwards_</a> · <a href="https://soundcloud.com/williamedwards98/sad-song" title="Sad Song" target="_blank" style="color: #cccccc; text-decoration: none;">Sad Song</a></div>'
+        },
+        {
+          type:'boost',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/303040366&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/tm-craftingtable-amir" title="™CraftingTable amir" target="_blank" style="color: #cccccc; text-decoration: none;">™CraftingTable amir</a> · <a href="https://soundcloud.com/tm-craftingtable-amir/ultimate-bass-boosted-songs-2016-best-extreme-bass-boost-music-mix-2017" title="ULTIMATE BASS BOOSTED SONGS 2016 🔥 Best Extreme Bass Boost Music Mix 2017" target="_blank" style="color: #cccccc; text-decoration: none;">ULTIMATE BASS BOOSTED SONGS 2016 🔥 Best Extreme Bass Boost Music Mix 2017</a></div>'
+        },
+        {
+          type:'boost',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/853790078&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kenlygame1-1" title="Kenlygame1 1" target="_blank" style="color: #cccccc; text-decoration: none;">Kenlygame1 1</a> · <a href="https://soundcloud.com/kenlygame1-1/sets/boost-songs" title="Boost Songs" target="_blank" style="color: #cccccc; text-decoration: none;">Boost Songs</a></div>'
+        },
+        {
+          type:'morning vibes',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/984374977&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/vp_records" title="VP RECORDS" target="_blank" style="color: #cccccc; text-decoration: none;">VP RECORDS</a> · <a href="https://soundcloud.com/vp_records/reggae-love-songs-valentines-day-mix-by-road-international-x-vp-records" title="REGGAE LOVE SONGS | Valentines Day Mix by Road International x VP Records" target="_blank" style="color: #cccccc; text-decoration: none;">REGGAE LOVE SONGS | Valentines Day Mix by Road International x VP Records</a></div>'
+        },
+        {
+          type:'morning vibes',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/443242176&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/user-950399421" title="User 950399421" target="_blank" style="color: #cccccc; text-decoration: none;">User 950399421</a> · <a href="https://soundcloud.com/user-950399421/sets/morning-songs" title="Morning songs" target="_blank" style="color: #cccccc; text-decoration: none;">Morning songs</a></div>'
+                  
+        },
+        {
+          type:'gym',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/200519901&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nour-kordi" title="Nour Kordi" target="_blank" style="color: #cccccc; text-decoration: none;">Nour Kordi</a> · <a href="https://soundcloud.com/nour-kordi/sets/sports-songs" title="sport&#x27;s songs" target="_blank" style="color: #cccccc; text-decoration: none;">sport&#x27;s songs</a></div>'
+        },
+        {
+          type:'gym',
+          embedLink:'<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/160438560&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/zain-ul-abideen-116" title="Zain Ul Abideen" target="_blank" style="color: #cccccc; text-decoration: none;">Zain Ul Abideen</a> · <a href="https://soundcloud.com/zain-ul-abideen-116/sets/gym-songs-english-1" title="Gym songs(English)" target="_blank" style="color: #cccccc; text-decoration: none;">Gym songs(English)</a></div>'
+        }
+
+
+      ];
+        window.onload = renderElements();
+
+        function renderElements() {
+          document.getElementById('renderCards').innerHTML = data.map((post,index) => (
+              `<div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 ">
+                <div class="card h-100">
+                  <div class="card-body d-flex flex-column justify-content-around align-items-center">
+                    <div class="img-fluid">${post.embedLink}</div>
+                  </div>
+                </div>
+              </div>`
+            )).join('');
+            document.getElementById('renderCount').innerText = `${data.length.toString()} total records`;
+
+        
+          const valDrop = [];
+          function onlyUnique(value, index, self) {
+            console.log("vals", value.type);
+            valDrop.push(value.type);
+            console.log(valDrop);
+          }
+            var unique = data.filter(onlyUnique);
+            console.log(unique,"unique"); 
+            function onlyUnique2(value, index, self) {
+              return self.indexOf(value) === index;
+            }
+            var unique2 = valDrop.filter(onlyUnique2);
+            console.log(unique2, "unique2");
+            document.getElementById('renderGenres').innerHTML = unique2.map((post,index) => (
+              `<a class="dropdown-item" id="${post}" href="#" onclick="onTouchDropdown('${post}')">${post}</a>`
+            )).join('');
+        }
+
+        function searchNow() {
+          var searchVal = document.getElementById('seachInput').value;
+          const filtedData = []
+          console.log(searchVal, "searchVal");
+      
+            for(let i =0; i < data.length; i++) {
+              console.log("for loop")
+              if(data[i].type === searchVal) {
+                console.log("condition ok");
+                filtedData.push(data[i]);
+                console.log(filtedData, "new data ");
+                document.getElementById('renderCards').innerHTML = filtedData.map((post,index) => (
+                  `<div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 ">
+                    <div class="card h-100">
+                      <div class="card-body d-flex flex-column justify-content-around align-items-center">
+                        <div class="img-fluid">${post.embedLink}</div>
+                      </div>
+                    </div>
+                  </div>`
+                )).join('');
+                document.getElementById('renderCount').innerText = `${filtedData.length.toString()} results found`;
+              }
+            } 
+        }
+
+        function onTouchDropdown(clicked) {
+          console.log("clicked dropdown menu", clicked);
+
+          var idVal = document.getElementById(clicked).innerHTML;
+          console.log(idVal, "idVal");
+          const selectedItemData = [];
+          for(let i =0; i < data.length; i++) {
+              console.log("for loop")
+              if(data[i].type === idVal) {
+                console.log("condition ok");
+                selectedItemData.push(data[i]);
+                console.log(selectedItemData, "new data ");
+                document.getElementById('renderCards').innerHTML = selectedItemData.map((post,index) => (
+                `<div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 ">
+                  <div class="card h-100">
+                    <div class="card-body d-flex flex-column justify-content-around align-items-center w-100">
+                      <div class="img-fluid">${post.embedLink}</div>
+                    </div>
+                  </div>
+                </div>`
+              )).join('');
+              document.getElementById('renderCount').innerText = `${selectedItemData.length.toString()} results found`;
+              }
+            } 
+        }
+      
+    </script>
+   
 </body>
 </html>
